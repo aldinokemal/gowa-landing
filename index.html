@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GOWA — self-hosted WhatsApp REST API</title>
+    <meta
+      name="description"
+      content="GOWA is a self-hosted WhatsApp REST API written in Go and released under the MIT License. It is unofficial and not affiliated with WhatsApp."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#eff4f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1318" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="gallery/gowa.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body id="top">
+    <a class="skip" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="wrap bar">
+        <a class="brand" href="#top">
+          <img
+            class="logo"
+            src="gallery/gowa.svg"
+            alt=""
+            width="40"
+            height="40"
+          />
+          <span>GOWA</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#features">Features</a>
+          <a href="#quick-start">Quick start</a>
+          <a href="https://gowa-docs.mintlify.site/">Documentation</a>
+          <a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice">GitHub</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">MIT License · Self-hosted · Go</p>
+          <h1>A self-hosted WhatsApp REST API</h1>
+          <p class="lede">
+            GOWA (Go WhatsApp) is built for efficient memory use. One Go
+            server sends and receives WhatsApp messages over HTTP, and can
+            keep more than one account connected at the same time.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://gowa-docs.mintlify.site/">Documentation</a>
+            <a class="button button-secondary" href="https://github.com/aldinokemal/go-whatsapp-web-multidevice">View on GitHub</a>
+            <a class="button button-secondary" href="https://hub.docker.com/r/aldinokemal2104/go-whatsapp-web-multidevice">Docker Hub image</a>
+          </div>
+        </div>
+        <div class="hero-mark">
+          <img
+            src="gallery/gowa.svg"
+            alt="GOWA logo"
+            width="200"
+            height="200"
+          />
+        </div>
+      </section>
+
+      <aside class="notice wrap" aria-labelledby="notice-title">
+        <h2 id="notice-title">Important</h2>
+        <p>
+          This project is unofficial and not affiliated with WhatsApp. Use the
+          official WhatsApp Business Platform when you require a supported,
+          production-grade integration.
+        </p>
+      </aside>
+
+      <section class="wrap" id="features" aria-labelledby="features-title">
+        <div class="section-head">
+          <h2 id="features-title">Features</h2>
+          <p>
+            The list below follows the project readme. The
+            <a href="https://gowa-docs.mintlify.site/">documentation</a>
+            and the
+            <a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice/blob/main/readme.md">readme</a>
+            describe the full HTTP API.
+          </p>
+        </div>
+        <ul class="feature-grid">
+          <li>
+            <h3>Multi-device and multi-account</h3>
+            <p>
+              Connect and manage multiple WhatsApp accounts in a single server
+              instance. Device-scoped calls take an <code>X-Device-Id</code>
+              header or a <code>device_id</code> query parameter. When only one
+              device is registered, it is the default.
+            </p>
+          </li>
+          <li>
+            <h3>Webhooks</h3>
+            <p>
+              Forward received messages and other events to a webhook URL.
+              Each device can set its own URL and event filter, or fall back
+              to the global webhook. Requests can include an HMAC-SHA256
+              signature in <code>X-Hub-Signature-256</code>.
+            </p>
+          </li>
+          <li>
+            <h3>Web dashboard</h3>
+            <p>
+              The dashboard lives in
+              <a href="https://github.com/aldinokemal/gowa-ui">gowa-ui</a>.
+              The server downloads a release, checks its SHA-256 digest,
+              caches it, and serves it at <code>/</code>.
+            </p>
+          </li>
+          <li>
+            <h3>MCP server</h3>
+            <p>
+              The REST server exposes a Model Context Protocol endpoint at
+              <code>/mcp</code> for AI agents and tools. Optional OAuth 2.1
+              is available for remote clients that cannot send a Basic Auth
+              header. OAuth is off by default.
+            </p>
+          </li>
+          <li>
+            <h3>Chatwoot</h3>
+            <p>
+              An optional Chatwoot integration can forward conversations and
+              sync history. It stays off until <code>CHATWOOT_ENABLED</code>
+              is set. Per-device configuration and a reply webhook are part
+              of that integration.
+            </p>
+          </li>
+          <li>
+            <h3>Scheduled sends</h3>
+            <p>
+              Schedule a supported send once, or repeat it daily, weekly, or
+              monthly. Schedules survive restarts. List, pause, resume, or
+              cancel them at <code>/send/schedules</code>. The readme says
+              this does not guarantee exactly-once delivery.
+            </p>
+          </li>
+        </ul>
+
+        <div class="more">
+          <h3>Also in the readme</h3>
+          <ul>
+            <li>Send text, images, video, audio, files, stickers, contacts, locations, polls, and links over HTTP.</li>
+            <li>Follow newsletter channels, read their metadata and messages, search the directory, and download channel media.</li>
+            <li>Filter webhook events, sign them with a secret you generate, and skip selected chats or senders.</li>
+            <li>Basic Auth with multiple credentials, a custom linked-device name, and deployment under a subpath with <code>--base-path</code>.</li>
+            <li>Linux, macOS, and Windows are supported platforms. The project publishes ARM and AMD64 downloads.</li>
+            <li>
+              An n8n community node is published as
+              <a href="https://www.npmjs.com/package/@aldinokemal2104/n8n-nodes-gowa"><code>@aldinokemal2104/n8n-nodes-gowa</code></a>.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="wrap" id="quick-start" aria-labelledby="quick-start-title">
+        <div class="section-head">
+          <h2 id="quick-start-title">Docker quick start</h2>
+          <p>
+            Docker avoids installing Go, FFmpeg, and libwebp on the host. The
+            official image on Docker Hub is
+            <code>aldinokemal2104/go-whatsapp-web-multidevice</code>.
+            This is the production example from the project readme.
+          </p>
+        </div>
+        <figure class="command">
+          <figcaption>Docker Hub image, as published in the readme</figcaption>
+          <pre tabindex="0" aria-label="Docker commands from the project readme"><code>docker volume create whatsapp-storages
+docker volume create whatsapp-statics
+docker run --detach \
+  --publish 3000:3000 \
+  --name whatsapp \
+  --restart always \
+  --volume whatsapp-storages:/app/storages \
+  --volume whatsapp-statics:/app/statics \
+  aldinokemal2104/go-whatsapp-web-multidevice \
+  rest --autoreply="Don't reply to this message, please"</code></pre>
+        </figure>
+        <p>
+          The container publishes port 3000. Open
+          <code>http://localhost:3000</code> on the machine running Docker.
+        </p>
+        <p>
+          Basic authentication is required when the server binds a
+          non-loopback address. The default bind address is
+          <code>0.0.0.0</code>. Set credentials with
+          <code>--basic-auth</code> or <code>APP_BASIC_AUTH</code>, with a
+          username and password in every entry.
+        </p>
+        <p>
+          The same readme also documents the GitHub Container Registry image
+          <a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice/pkgs/container/go-whatsapp-web-multidevice"><code>ghcr.io/aldinokemal/go-whatsapp-web-multidevice</code></a>
+          and Docker Compose examples. Start a Compose stack with
+          <code>docker compose up -d</code>.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <h2>Project</h2>
+          <ul class="link-list">
+            <li><a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice">GitHub repository</a></li>
+            <li><a href="https://gowa-docs.mintlify.site/">Documentation</a></li>
+            <li><a href="https://hub.docker.com/r/aldinokemal2104/go-whatsapp-web-multidevice">Docker Hub image</a></li>
+            <li><a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice/blob/main/LICENCE.txt">MIT License</a></li>
+            <li><a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+            <li><a href="https://github.com/sponsors/aldinokemal">Sponsor on GitHub</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Important</h2>
+          <p>
+            This project is unofficial and not affiliated with WhatsApp. Use
+            the official WhatsApp Business Platform when you require a
+            supported, production-grade integration.
+          </p>
+        </div>
+      </div>
+      <div class="wrap powered-row">
+        <a class="powered" href="https://www.netlify.com">
+          <img
+            src="https://www.netlify.com/assets/badges/netlify-badge-color-accent.svg"
+            alt=""
+            width="114"
+            height="50"
+          />
+          <span>This site is powered by Netlify</span>
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
