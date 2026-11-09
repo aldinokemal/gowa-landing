@@ -1,0 +1,45 @@
+# Static site. Publish this repository root and do not run a build.
+[build]
+publish = "."
+
+[build.processing]
+skip_processing = true
+
+# Security headers for every response. Cache-Control is set per path below
+# because these files are not fingerprinted.
+[[headers]]
+for = "/*"
+[headers.values]
+X-Frame-Options = "DENY"
+X-Content-Type-Options = "nosniff"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+Cross-Origin-Opener-Policy = "same-origin"
+Cross-Origin-Resource-Policy = "same-origin"
+Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+Content-Security-Policy = "default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; script-src 'none'; style-src 'self'; img-src 'self' https://www.netlify.com; font-src 'self'; connect-src 'none'; object-src 'none'; manifest-src 'none'"
+
+[[headers]]
+for = "/"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/index.html"
+[headers.values]
+Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+for = "/styles.css"
+[headers.values]
+Cache-Control = "public, max-age=3600"
+
+[[headers]]
+for = "/gallery/*"
+[headers.values]
+Cache-Control = "public, max-age=86400"
+
+[[headers]]
+for = "/LICENSE"
+[headers.values]
+Cache-Control = "public, max-age=3600"

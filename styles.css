@@ -1,0 +1,507 @@
+/* Colors follow gowa-ui src/index.css (brand blue, logo about #7caec2).
+   --link and --button are the same hue at a lightness that keeps body text
+   and button labels above WCAG AA on these backgrounds. */
+
+:root {
+  color-scheme: light;
+  --font-sans: "Figtree", "Avenir Next", "Segoe UI", sans-serif;
+  --font-heading: "Bricolage Grotesque", "Figtree", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+  --radius: 0.875rem;
+  --background: oklch(0.965 0.006 225);
+  --foreground: oklch(0.24 0.02 235);
+  --card: oklch(1 0 0);
+  --primary: oklch(0.55 0.09 225);
+  --primary-foreground: oklch(0.985 0.005 225);
+  --secondary: oklch(0.94 0.015 225);
+  --secondary-foreground: oklch(0.35 0.04 225);
+  --muted: oklch(0.945 0.008 225);
+  --muted-foreground: oklch(0.5 0.02 220);
+  --border: oklch(0.9 0.012 225);
+  --ring: oklch(0.66 0.09 225);
+  --link: oklch(0.48 0.09 225);
+  --button: oklch(0.45 0.09 225);
+  --button-hover: oklch(0.4 0.09 225);
+  --code-background: oklch(0.22 0.016 235);
+  --code-foreground: oklch(0.93 0.008 225);
+  --shadow: 0 1px 2px oklch(0.24 0.02 235 / 6%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --background: oklch(0.18 0.016 235);
+    --foreground: oklch(0.93 0.008 225);
+    --card: oklch(0.22 0.016 235);
+    --primary: oklch(0.72 0.075 225);
+    --primary-foreground: oklch(0.16 0.02 235);
+    --secondary: oklch(0.29 0.02 235);
+    --secondary-foreground: oklch(0.9 0.01 225);
+    --muted: oklch(0.28 0.018 235);
+    --muted-foreground: oklch(0.72 0.015 225);
+    --border: oklch(1 0 0 / 12%);
+    --ring: oklch(0.66 0.09 225);
+    --link: oklch(0.78 0.06 225);
+    --button: oklch(0.72 0.075 225);
+    --button-hover: oklch(0.78 0.06 225);
+    --code-background: oklch(0.14 0.016 235);
+    --code-foreground: oklch(0.93 0.008 225);
+    --shadow: 0 1px 2px oklch(0 0 0 / 35%);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 100% -10%, color-mix(in oklch, var(--primary) 22%, transparent), transparent 55%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+h1 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(2.4rem, 6vw, 4.25rem);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.18em;
+}
+
+a:visited {
+  color: var(--link);
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 2;
+  transform: translateY(-200%);
+  background: var(--card);
+  color: var(--foreground);
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.skip:focus {
+  transform: none;
+}
+
+.wrap {
+  width: min(72rem, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.site-header {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklch, var(--background) 88%, transparent);
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--foreground);
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  min-height: 2.75rem;
+}
+
+.brand:visited {
+  color: var(--foreground);
+}
+
+.logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.65rem;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.35rem;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.7rem;
+  color: var(--foreground);
+  text-decoration: none;
+  border-radius: 999px;
+}
+
+.nav a:visited {
+  color: var(--foreground);
+}
+
+.nav a:hover {
+  background: var(--secondary);
+  text-decoration: none;
+}
+
+.hero {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding: 3.5rem 0 2rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.92rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lede {
+  margin-top: 1rem;
+  max-width: 38rem;
+  font-size: 1.2rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: var(--button);
+  color: var(--primary-foreground);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.button:visited {
+  color: var(--primary-foreground);
+}
+
+.button:hover {
+  background: var(--button-hover);
+  text-decoration: none;
+}
+
+.button-secondary {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+}
+
+.button-secondary:visited {
+  color: var(--secondary-foreground);
+}
+
+.button-secondary:hover {
+  background: var(--muted);
+}
+
+.hero-mark {
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  width: min(100%, 18rem);
+  padding: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) * 1.8);
+  box-shadow: var(--shadow);
+}
+
+.hero-mark img {
+  width: min(100%, 12.5rem);
+  height: auto;
+}
+
+.notice {
+  margin: 0.5rem auto 2.5rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.notice h2 {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.notice p {
+  margin-top: 0.4rem;
+}
+
+.section-head {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 42rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-head p {
+  color: var(--muted-foreground);
+}
+
+#features,
+#quick-start {
+  padding-bottom: 3rem;
+}
+
+.feature-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature-grid li {
+  padding: 1.15rem 1.15rem 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--primary);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.feature-grid p {
+  color: var(--foreground);
+}
+
+.more {
+  margin-top: 1rem;
+  padding: 1.15rem 1.25rem 1.3rem;
+  background: var(--secondary);
+  border-radius: var(--radius);
+}
+
+.more ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.more li + li {
+  margin-top: 0.35rem;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+.command {
+  margin: 0 0 1rem;
+}
+
+.command figcaption {
+  margin-bottom: 0.45rem;
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+}
+
+pre {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  background: var(--code-background);
+  color: var(--code-foreground);
+  border-radius: var(--radius);
+  line-height: 1.55;
+  tab-size: 2;
+}
+
+pre code {
+  font-size: 0.86rem;
+  color: inherit;
+}
+
+#quick-start p + p {
+  margin-top: 0.8rem;
+}
+
+.site-footer {
+  padding: 2.5rem 0 2rem;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.link-list {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
+.site-footer p {
+  margin-top: 0.75rem;
+}
+
+.powered-row {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.powered {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1rem;
+  min-height: 2.75rem;
+  color: var(--foreground);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.powered:visited {
+  color: var(--foreground);
+}
+
+.powered img {
+  width: 7.125rem;
+  height: auto;
+  display: block;
+}
+
+.powered span {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+@media (max-width: 520px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (min-width: 800px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.4fr) minmax(14rem, 0.7fr);
+    padding-top: 4.5rem;
+  }
+
+  .hero-mark {
+    justify-self: end;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: start;
+  }
+}
+
+@media (min-width: 1100px) {
+  .feature-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 380px) {
+  .wrap {
+    width: min(72rem, calc(100% - 1.5rem));
+  }
+
+  pre code {
+    font-size: 0.78rem;
+  }
+}
