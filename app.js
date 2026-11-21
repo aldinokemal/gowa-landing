@@ -3,6 +3,27 @@
   root.classList.add("js-ready");
   var storageKey = "gowa-theme";
 
+  var menu = document.querySelector(".menu-toggle");
+  var nav = document.getElementById("primary-nav");
+  function closeMenu() {
+    menu.setAttribute("aria-expanded", "false");
+  }
+  if (menu && nav) {
+    menu.addEventListener("click", function () {
+      menu.setAttribute("aria-expanded", String(menu.getAttribute("aria-expanded") !== "true"));
+    });
+    document.addEventListener("click", function (event) {
+      if (!menu.contains(event.target) && (!nav.contains(event.target) || event.target.closest("a"))) closeMenu();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && menu.getAttribute("aria-expanded") === "true") {
+        closeMenu();
+        menu.focus();
+      }
+    });
+    window.matchMedia("(max-width: 640px)").addEventListener("change", closeMenu);
+  }
+
   /* 1. Theme toggle */
   var savedTheme = null;
   try {
