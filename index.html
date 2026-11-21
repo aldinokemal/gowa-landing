@@ -9,13 +9,22 @@
       content="GOWA is a self-hosted WhatsApp REST API written in Go and released under the MIT License. It is unofficial and not affiliated with WhatsApp."
     />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#eff4f6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0b1318" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f7f9fa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1317" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="gallery/gowa.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
     <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
   </head>
   <body id="top">
     <a class="skip" href="#content">Skip to content</a>
+
+    <div class="ambient-bg" aria-hidden="true"></div>
 
     <header class="site-header">
       <div class="wrap bar">
@@ -24,16 +33,40 @@
             class="logo"
             src="gallery/gowa.svg"
             alt=""
-            width="40"
-            height="40"
+            width="32"
+            height="32"
           />
           <span>GOWA</span>
         </a>
+
         <nav class="nav" aria-label="Primary">
           <a href="#features">Features</a>
           <a href="#quick-start">Quick start</a>
-          <a href="https://gowa-docs.mintlify.site/">Documentation</a>
-          <a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice">GitHub</a>
+          <a href="https://gowa-docs.mintlify.site/">Docs</a>
+          <a
+            class="nav-github"
+            href="https://github.com/aldinokemal/go-whatsapp-web-multidevice"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z" />
+            </svg>
+            <span>GitHub</span>
+          </a>
+          <button
+            type="button"
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="Toggle color theme"
+            title="Toggle color theme"
+          >
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+            </svg>
+          </button>
         </nav>
       </div>
     </header>
@@ -41,42 +74,164 @@
     <main id="content">
       <section class="hero wrap">
         <div class="hero-copy">
-          <p class="eyebrow">MIT License · Self-hosted · Go</p>
-          <h1>A self-hosted WhatsApp REST API</h1>
-          <p class="lede">
+          <div class="eyebrow animate-in">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>MIT License</span>
+            <span class="sep" aria-hidden="true">/</span>
+            <span>Self-hosted</span>
+            <span class="sep" aria-hidden="true">/</span>
+            <span>Go</span>
+          </div>
+          <h1 class="animate-in delay-1">
+            A self-hosted WhatsApp <span class="accent-text">REST API</span>
+          </h1>
+          <p class="lede animate-in delay-2">
             GOWA (Go WhatsApp) is built for efficient memory use. One Go
             server sends and receives WhatsApp messages over HTTP, and can
             keep more than one account connected at the same time.
           </p>
-          <div class="actions">
-            <a class="button" href="https://gowa-docs.mintlify.site/">Documentation</a>
-            <a class="button button-secondary" href="https://github.com/aldinokemal/go-whatsapp-web-multidevice">View on GitHub</a>
-            <a class="button button-secondary" href="https://hub.docker.com/r/aldinokemal2104/go-whatsapp-web-multidevice">Docker Hub image</a>
+          <div class="actions animate-in delay-3">
+            <a class="button button-primary" href="https://gowa-docs.mintlify.site/">
+              <span>Documentation</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6" />
+              </svg>
+            </a>
+            <a class="button button-secondary" href="https://github.com/aldinokemal/go-whatsapp-web-multidevice">
+              <span>View on GitHub</span>
+            </a>
+            <a class="button button-ghost" href="https://hub.docker.com/r/aldinokemal2104/go-whatsapp-web-multidevice">
+              <span>Docker Hub image</span>
+            </a>
           </div>
         </div>
-        <div class="hero-mark">
-          <img
-            src="gallery/gowa.svg"
-            alt="GOWA logo"
-            width="200"
-            height="200"
-          />
+
+        <div class="hero-stage animate-in delay-2" aria-label="Interactive GOWA simulator">
+          <div class="stage-3d" id="stage-3d" data-tilt data-tilt-max="10" data-mode="message">
+            <div class="stage-glow" aria-hidden="true"></div>
+            <div class="stage-glare" aria-hidden="true"></div>
+
+            <div class="stage-visual">
+              <div class="call-waves" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="mcp-beam" aria-hidden="true">
+                <span class="mcp-node">GOWA</span>
+                <span class="mcp-track"><span class="mcp-pulse"></span></span>
+                <span class="mcp-node mcp-peer" id="mcp-peer-label">Claude</span>
+              </div>
+
+              <button
+                type="button"
+                class="stage-logo"
+                id="gowa-trigger"
+                aria-label="Trigger GOWA interactive action"
+                title="Click GOWA to trigger action"
+              >
+                <img
+                  src="gallery/gowa.svg"
+                  alt="GOWA logo"
+                  width="176"
+                  height="176"
+                />
+                <span class="logo-hint" aria-hidden="true">Click to run</span>
+              </button>
+
+              <div class="flying-packet" id="flying-packet" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m22 2-7 20-4-9-9-4Z" />
+                  <path d="M22 2 11 13" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="stage-meta">
+              <div class="endpoint-chip">
+                <span class="method" id="sim-method">POST</span>
+                <span class="path" id="sim-path">/send/message</span>
+                <span class="code-ok" id="sim-status">200 OK</span>
+              </div>
+
+              <div class="sim-feed" id="sim-feed" aria-live="polite">
+                <div class="sim-row">
+                  <span class="sim-actor" id="sim-from">GOWA</span>
+                  <span class="sim-text" id="sim-line-1">To Nadia: "Release v6.4 is live on staging."</span>
+                </div>
+                <div class="sim-row sim-row-sub">
+                  <span class="sim-actor sim-actor-alt" id="sim-to">Delivered</span>
+                  <span class="sim-text" id="sim-line-2">X-Device-Id: ops-01 · 38ms</span>
+                  <span class="call-bars" aria-hidden="true">
+                    <span></span><span></span><span></span><span></span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="stage-controls" role="tablist" aria-label="Interactive GOWA actions">
+                <button type="button" class="mode-pill is-active" role="tab" aria-selected="true" data-mode="message">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="m22 2-7 20-4-9-9-4Z" />
+                    <path d="M22 2 11 13" />
+                  </svg>
+                  <span>Message</span>
+                </button>
+                <button type="button" class="mode-pill" role="tab" aria-selected="false" data-mode="call">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z" />
+                  </svg>
+                  <span>Call</span>
+                </button>
+                <button type="button" class="mode-pill" role="tab" aria-selected="false" data-mode="claude">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83" />
+                  </svg>
+                  <span>Claude</span>
+                </button>
+                <button type="button" class="mode-pill" role="tab" aria-selected="false" data-mode="codex">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="16 18 22 12 16 6" />
+                    <polyline points="8 6 2 12 8 18" />
+                  </svg>
+                  <span>Codex</span>
+                </button>
+                <button type="button" class="mode-pill" role="tab" aria-selected="false" data-mode="webhook">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z" />
+                  </svg>
+                  <span>Webhook</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <aside class="notice wrap" aria-labelledby="notice-title">
-        <h2 id="notice-title">Important</h2>
-        <p>
-          This project is unofficial and not affiliated with WhatsApp. Use the
-          official WhatsApp Business Platform when you require a supported,
-          production-grade integration.
-        </p>
-      </aside>
+      <div class="wrap reveal">
+        <aside class="notice" aria-labelledby="notice-title">
+          <div class="notice-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16v-4m0-4h.01" />
+            </svg>
+          </div>
+          <div class="notice-body">
+            <h2 id="notice-title">Important</h2>
+            <p>
+              This project is unofficial and not affiliated with WhatsApp. Use the
+              official WhatsApp Business Platform when you require a supported,
+              production-grade integration.
+            </p>
+          </div>
+        </aside>
+      </div>
 
-      <section class="wrap" id="features" aria-labelledby="features-title">
-        <div class="section-head">
+      <section class="section wrap" id="features" aria-labelledby="features-title">
+        <div class="section-head reveal">
+          <p class="section-kicker">Capabilities</p>
           <h2 id="features-title">Features</h2>
-          <p>
+          <p class="section-desc">
             The list below follows the project readme. The
             <a href="https://gowa-docs.mintlify.site/">documentation</a>
             and the
@@ -84,8 +239,18 @@
             describe the full HTTP API.
           </p>
         </div>
-        <ul class="feature-grid">
-          <li>
+
+        <ul class="bento-grid">
+          <li class="bento-card span-7 reveal">
+            <div class="card-top">
+              <span class="card-index">01</span>
+              <span class="card-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="14" height="14" rx="2.5" />
+                  <path d="M8 21h12a2 2 0 0 0 2-2V9" />
+                </svg>
+              </span>
+            </div>
             <h3>Multi-device and multi-account</h3>
             <p>
               Connect and manage multiple WhatsApp accounts in a single server
@@ -94,7 +259,18 @@
               device is registered, it is the default.
             </p>
           </li>
-          <li>
+
+          <li class="bento-card span-5 reveal">
+            <div class="card-top">
+              <span class="card-index">02</span>
+              <span class="card-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2" />
+                  <path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06" />
+                  <path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8" />
+                </svg>
+              </span>
+            </div>
             <h3>Webhooks</h3>
             <p>
               Forward received messages and other events to a webhook URL.
@@ -103,7 +279,17 @@
               signature in <code>X-Hub-Signature-256</code>.
             </p>
           </li>
-          <li>
+
+          <li class="bento-card span-5 reveal">
+            <div class="card-top">
+              <span class="card-index">03</span>
+              <span class="card-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2.5" />
+                  <path d="M3 9h18M9 21V9" />
+                </svg>
+              </span>
+            </div>
             <h3>Web dashboard</h3>
             <p>
               The dashboard lives in
@@ -112,7 +298,17 @@
               caches it, and serves it at <code>/</code>.
             </p>
           </li>
-          <li>
+
+          <li class="bento-card span-7 reveal">
+            <div class="card-top">
+              <span class="card-index">04</span>
+              <span class="card-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </span>
+            </div>
             <h3>MCP server</h3>
             <p>
               The REST server exposes a Model Context Protocol endpoint at
@@ -121,7 +317,17 @@
               header. OAuth is off by default.
             </p>
           </li>
-          <li>
+
+          <li class="bento-card span-6 reveal">
+            <div class="card-top">
+              <span class="card-index">05</span>
+              <span class="card-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                  <path d="M8 12h.01M12 12h.01M16 12h.01" />
+                </svg>
+              </span>
+            </div>
             <h3>Chatwoot</h3>
             <p>
               An optional Chatwoot integration can forward conversations and
@@ -130,7 +336,17 @@
               of that integration.
             </p>
           </li>
-          <li>
+
+          <li class="bento-card span-6 reveal">
+            <div class="card-top">
+              <span class="card-index">06</span>
+              <span class="card-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3 2" />
+                </svg>
+              </span>
+            </div>
             <h3>Scheduled sends</h3>
             <p>
               Schedule a supported send once, or repeat it daily, weekly, or
@@ -141,9 +357,12 @@
           </li>
         </ul>
 
-        <div class="more">
-          <h3>Also in the readme</h3>
-          <ul>
+        <div class="more reveal">
+          <div class="more-head">
+            <h3>Also in the readme</h3>
+            <span class="more-tag">Included out of the box</span>
+          </div>
+          <ul class="spec-list">
             <li>Send text, images, video, audio, files, stickers, contacts, locations, polls, and links over HTTP.</li>
             <li>Follow newsletter channels, read their metadata and messages, search the directory, and download channel media.</li>
             <li>Filter webhook events, sign them with a secret you generate, and skip selected chats or senders.</li>
@@ -157,51 +376,105 @@
         </div>
       </section>
 
-      <section class="wrap" id="quick-start" aria-labelledby="quick-start-title">
-        <div class="section-head">
+      <section class="section wrap" id="quick-start" aria-labelledby="quick-start-title">
+        <div class="section-head reveal">
+          <p class="section-kicker">Deployment</p>
           <h2 id="quick-start-title">Docker quick start</h2>
-          <p>
+          <p class="section-desc">
             Docker avoids installing Go, FFmpeg, and libwebp on the host. The
             official image on Docker Hub is
             <code>aldinokemal2104/go-whatsapp-web-multidevice</code>.
             This is the production example from the project readme.
           </p>
         </div>
-        <figure class="command">
-          <figcaption>Docker Hub image, as published in the readme</figcaption>
-          <pre tabindex="0" aria-label="Docker commands from the project readme"><code>docker volume create whatsapp-storages
-docker volume create whatsapp-statics
-docker run --detach \
-  --publish 3000:3000 \
-  --name whatsapp \
-  --restart always \
-  --volume whatsapp-storages:/app/storages \
-  --volume whatsapp-statics:/app/statics \
-  aldinokemal2104/go-whatsapp-web-multidevice \
-  rest --autoreply="Don't reply to this message, please"</code></pre>
-        </figure>
-        <p>
-          The container publishes port 3000. Open
-          <code>http://localhost:3000</code> on the machine running Docker.
-        </p>
-        <p>
-          Basic authentication is required when the server binds a
-          non-loopback address. The default bind address is
-          <code>0.0.0.0</code>. Set credentials with
-          <code>--basic-auth</code> or <code>APP_BASIC_AUTH</code>, with a
-          username and password in every entry.
-        </p>
-        <p>
-          The same readme also documents the GitHub Container Registry image
-          <a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice/pkgs/container/go-whatsapp-web-multidevice"><code>ghcr.io/aldinokemal/go-whatsapp-web-multidevice</code></a>
-          and Docker Compose examples. Start a Compose stack with
-          <code>docker compose up -d</code>.
-        </p>
+
+        <div class="quickstart-layout">
+          <figure class="terminal reveal">
+            <div class="terminal-bar">
+              <div class="terminal-dots" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <figcaption>Docker Hub image, as published in the readme</figcaption>
+              <button
+                type="button"
+                class="copy-btn"
+                id="copy-docker"
+                aria-label="Copy Docker commands"
+              >
+                <svg class="icon-copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                </svg>
+                <svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+                <span class="copy-label">Copy</span>
+              </button>
+            </div>
+            <pre tabindex="0" aria-label="Docker commands from the project readme"><code id="docker-code"><span class="tok-cmd">docker</span> volume create whatsapp-storages
+<span class="tok-cmd">docker</span> volume create whatsapp-statics
+<span class="tok-cmd">docker</span> run <span class="tok-flag">--detach</span> \
+  <span class="tok-flag">--publish</span> 3000:3000 \
+  <span class="tok-flag">--name</span> whatsapp \
+  <span class="tok-flag">--restart</span> always \
+  <span class="tok-flag">--volume</span> whatsapp-storages:/app/storages \
+  <span class="tok-flag">--volume</span> whatsapp-statics:/app/statics \
+  <span class="tok-img">aldinokemal2104/go-whatsapp-web-multidevice</span> \
+  rest <span class="tok-flag">--autoreply</span>=<span class="tok-str">"Don't reply to this message, please"</span></code></pre>
+          </figure>
+
+          <div class="quickstart-notes reveal">
+            <div class="note-item">
+              <h3>Local port</h3>
+              <p>
+                The container publishes port 3000. Open
+                <code>http://localhost:3000</code> on the machine running Docker.
+              </p>
+            </div>
+            <div class="note-item">
+              <h3>Authentication</h3>
+              <p>
+                Basic authentication is required when the server binds a
+                non-loopback address. The default bind address is
+                <code>0.0.0.0</code>. Set credentials with
+                <code>--basic-auth</code> or <code>APP_BASIC_AUTH</code>, with a
+                username and password in every entry.
+              </p>
+            </div>
+            <div class="note-item">
+              <h3>Registry &amp; Compose</h3>
+              <p>
+                The same readme also documents the GitHub Container Registry image
+                <a href="https://github.com/aldinokemal/go-whatsapp-web-multidevice/pkgs/container/go-whatsapp-web-multidevice"><code>ghcr.io/aldinokemal/go-whatsapp-web-multidevice</code></a>
+                and Docker Compose examples. Start a Compose stack with
+                <code>docker compose up -d</code>.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="wrap footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top">
+            <img
+              class="logo"
+              src="gallery/gowa.svg"
+              alt=""
+              width="28"
+              height="28"
+            />
+            <span>GOWA</span>
+          </a>
+          <p>
+            Self-hosted WhatsApp REST API written in Go and released under the MIT License.
+          </p>
+        </div>
+
         <div>
           <h2>Project</h2>
           <ul class="link-list">
@@ -213,6 +486,7 @@ docker run --detach \
             <li><a href="https://github.com/sponsors/aldinokemal">Sponsor on GitHub</a></li>
           </ul>
         </div>
+
         <div>
           <h2>Important</h2>
           <p>
@@ -222,6 +496,7 @@ docker run --detach \
           </p>
         </div>
       </div>
+
       <div class="wrap powered-row">
         <a class="powered" href="https://www.netlify.com">
           <img
